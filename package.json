@@ -1,0 +1,18 @@
+{
+  "name": "vk-enhanced-backend",
+  "version": "1.0.0",
+  "description": "eamil sending and tournament sign ups",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vk",
+    "backend"
+  ],
+  "author": "Evan Miller",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
