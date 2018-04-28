@@ -16,13 +16,13 @@ const auth = {
 const transporter = nodemailer.createTransport(mg(auth))
 
 MessageRouter.get('/', (req, res) => {
-    res.json({activeEmailAddress: "voittamisenkulttuuriry@outlook.com"})
+    res.json({activeEmailAddress: "vk@vkry.info"})
 })
 
 MessageRouter.post('/', (req, res) => {
     const mailOptions = {
     from: {address: 'orja@vkry.com'},
-    to: 'voittamisenkulttuuriry@outlook.com',
+    to: 'vk@vkry.info',
     subject: 'Yhteydenotto',
     text: StrBuilder.buildYhteydenottoString(req.body)
 };
