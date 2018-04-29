@@ -22,8 +22,8 @@ SignupRouter.post('/', (req, res) => {
     const mailOptions = {
         from: {address: 'orja@vkry.com'},
         to: 'vk@vkry.info',
-        subject: 'Yhteydenotto',
-        text: StrBuilder.buildYhteydenottoString(req.body)
+        subject: 'Uusi jäsenhakemus',
+        text: StrBuilder.buildJasenHakemusString(req.body)
     };
 
 
@@ -31,11 +31,11 @@ SignupRouter.post('/', (req, res) => {
         if (error) {
             console.log(error);
         } else {
-            console.log('Email sent');
+            console.log('Jäsenhakemus sent');
         }
     });
 
-    res.json({status: 'mail sent'})
+    res.json({status: 'jasenhakemus sent'})
 })
 
 
