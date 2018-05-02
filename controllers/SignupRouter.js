@@ -4,19 +4,8 @@ Router for handling
  temporary tournament signups e.g. löscaba (".../loscaba")
 */
 const SignupRouter = require('express').Router()
-const nodemailer = require('nodemailer')
-const mg = require('nodemailer-mailgun-transport')
 const StrBuilder = require('../logic/StrBuilder')
-require('dotenv').config()
-
-const auth = {
-    auth: {
-        api_key: process.env.MAILGUN_API_KEY,
-        domain: 'sandbox647cfb0da0144fda92356c27cd535b78.mailgun.org'
-    }
-}
-
-const transporter = nodemailer.createTransport(mg(auth))
+const mailer = require('../service/Mailer')
 
 SignupRouter.post('/', (req, res) => {
     const mailOptions = {
@@ -27,7 +16,7 @@ SignupRouter.post('/', (req, res) => {
     };
 
 
-    transporter.sendMail(mailOptions, function (error, info) {
+    mailer.transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
         } else {
@@ -37,6 +26,48 @@ SignupRouter.post('/', (req, res) => {
 
     res.json({status: 'jasenhakemus sent'})
 })
+
+SignupRouter.post('/training', (req, res) => {
+    const mailOptions = {
+        from: {address: 'orja@vkry.com'},
+        to: 'vk@vkry.info',
+        subject: 'Uusi valmennus ilmo',
+        text: JSON.stringify(req.body)
+    };
+
+    console.log(JSON.stringify(req.body))
+
+    mailer.transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('valmennushakemus sent');
+        }
+    });
+
+    res.json({status: 'valmennushakemus sent'})
+})
+
+SignupRouter.post('/pong', (req, res) => {
+    const mailOptions = {
+        from: {address: 'orja@vkry.com'},
+        to: 'vk@vkry.info',
+        subject: 'Uusi pingis ilmo',
+        text: JSON.stringify(req.body)
+    };
+
+    mailer.transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('pingishaku sent');
+        }
+    });
+
+    res.json({status: 'pinigshaku sent'})
+})
+
+
 
 
 module.exports = SignupRouter
