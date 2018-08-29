@@ -67,7 +67,24 @@ SignupRouter.post('/pong', (req, res) => {
     res.json({status: 'pinigshaku sent'})
 })
 
-
+SignupRouter.post('/loscaba', (req, res) => {
+    const mailOptions = {
+        from: {address: 'orja@vkry.com'},
+        to: 'emiller.arkko@gmail.com',
+        subject: 'Uusi Loscaba ilmo',
+        text: JSON.stringify(req.body)
+    };
+    
+    mailer.transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('loscaba ilmo sent');
+        }
+    });
+    
+    res.json({status: 'loscaba ilmo sent'})
+})
 
 
 module.exports = SignupRouter
