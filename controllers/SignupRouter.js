@@ -70,7 +70,7 @@ SignupRouter.post('/pong', (req, res) => {
 SignupRouter.post('/loscaba', (req, res) => {
     const mailOptions = {
         from: {address: 'orja@vkry.com'},
-        to: 'emiller.arkko@gmail.com',
+        to: 'vk@vkry.info',
         subject: 'Uusi Loscaba ilmo',
         text: JSON.stringify(req.body)
     };
